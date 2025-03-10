@@ -45,4 +45,28 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relacionamento 1 para 1 - Um usuário tem um perfil.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Relacionamento 1 para N - Um usuário pode ter vários posts.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Relacionamento N para N - Um usuário pode ter vários cargos.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
